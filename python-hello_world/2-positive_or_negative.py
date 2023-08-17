@@ -5,10 +5,11 @@ number = random.choice([-98, -2, 0, 3, 8, 98])
 
 if not isinstance(number, int):
     print("TypeError")
-elif number > 0:
-    print("{} is positive".format(number))
-elif number == 0:
-    print("0 is zero")
 else:
-    print("{} is negative".format(number))
+    if number > 0:
+        print("{} is positive".format(number))
+    elif number == 0:
+        print("0 is zero")
+    else:
+        print("{} is negative".format(number))
 
