@@ -1,7 +1,9 @@
-!/usr/bin/python3
-def add(a, b):
-    return (a + b)
+#!/usr/bin/python3
+a = 1
+b = 2
 
-if name == "main": a = 1 b = 2 print("{0:d} + {1:d} = {2:d}".format(a, b, add(a, b)))
+from add_0 import add
 
+result = add(a, b)
+print("{} + {} = {}".format(a, b, result))
 
