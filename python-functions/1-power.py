@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
-# Define the pow function
 def pow(a, b):
-    # initialize result to 1
-    result = 1
-
-    # multiply a to itself b times
-    # if b is negative, divide 1 by a b times
-    for i in range(abs(b)):
-        if b < 0:
-            result /= a
+    # Handle base cases for b.
+    if b == 0:
+        return 1
+    elif b == 1:
+        return a
+    elif b < 0:
+        return 1/pow(a, -b)
+    else:
+        # Compute the power recursively.
+        p = pow(a*a, b//2)
+        if b % 2 == 0:
+            return p
         else:
-            result *= a
-
+            return p * a
 
