@@ -1,21 +1,11 @@
 #!/usr/bin/python3
+#!/usr/bin/python3
 import random
-
-number1 = random.choice([-98, -2, 0, 3, 8, 98])
-
-if type(number1) == str:
-    print("TypeError")
-elif number1 > 0:
-    print(str(number1) + " is positive")
-elif number1 == 0:
-    print("0 is zero")
+number = random.randint(-10, 10)
+if number > 0:
+    print("{} is positive".format(number))
+elif number == 0:
+    print("{} is zero".format(number))
 else:
-    print(str(number1) + " is negative")
-
-number2 = random.randint(-10, 10)
-
-if number2 % 2 == 0:
-    print(str(number2) + " is even")
-else:
-    print(str(number2) + " is odd")
+    print("{} is negative".format(number))
 
