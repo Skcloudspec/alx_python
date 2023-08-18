@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Define the pow function
 def pow(a, b):
     # initialize result to 1
     result = 1
@@ -10,4 +11,5 @@ def pow(a, b):
             result /= a
         else:
             result *= a
+
 
