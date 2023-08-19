@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 def update_dictionary(a_dictionary, key, value):
-    a_dictionary[key] = value
+    if key in a_dictionary:
+        a_dictionary[key] = value
+    else:
+        a_dictionary[key] = value
     return a_dictionary
 
 def print_sorted_dictionary(my_dict):
@@ -65,3 +68,4 @@ new_dict = update_dictionary(my_dict, key, value)
 print_sorted_dictionary(new_dict)
 print("--")
 print_sorted_dictionary(my_dict)
+
