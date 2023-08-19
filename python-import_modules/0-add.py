@@ -1,17 +1,7 @@
 #!/usr/bin/python3
-#def add(a, b):
-    """My addition function
+from add_0 import add
 
-    Args:
-        a: first integer
-        b: second integer
+a = 1
+b = 2
 
-    Returns:
-        The return value. a + b
-    """
-    return (a + b)
-
-if __name__ == '__main__':
-    # Some code that is only executed if this file is run directly
-    pass
-
+print("{} + {} = {}".format(a, b, add(a,b)))
