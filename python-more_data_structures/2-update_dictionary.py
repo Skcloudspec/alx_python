@@ -3,23 +3,65 @@ def update_dictionary(a_dictionary, key, value):
     a_dictionary[key] = value
     return a_dictionary
 
-if __name__ == "__main__":
-    def print_sorted_dictionary(my_dict):
-        """ Print sorted dictionary """
-        keys = sorted(my_dict.keys())
-        for k in keys:
-            print("{}: {}".format(k, my_dict[k]))
+def print_sorted_dictionary(my_dict):
+    """ Print sorted dictionary """
+    keys = sorted(my_dict.keys())
+    for k in keys:
+        print("{}: {}".format(k, my_dict[k]))
 
-    a_dictionary = { 'language': "C", 'number': 89, 'track': "Low level" }
-    new_dict = update_dictionary(a_dictionary, 'language', "Python")
-    print_sorted_dictionary(new_dict)
-    print("--")
-    print_sorted_dictionary(a_dictionary)
+# Test case 1
+my_dict = { 'a': "a", 'b': "b" , 'c': "c", 'd': "d", 'e': "e" }
+key = "a"
+value = "A"
+new_dict = update_dictionary(my_dict, key, value)
+print_sorted_dictionary(new_dict)
+print("--")
+print_sorted_dictionary(my_dict)
 
-    print("--")
-    print("--")
+# Test case 2
+print("--")
+print("--")
 
-    new_dict = update_dictionary(a_dictionary, 'city', "San Francisco")
-    print_sorted_dictionary(new_dict)
-    print("--")
-    print_sorted_dictionary(a_dictionary))
+my_dict = { 'a': "a", 'b': "b" , 'c': "c", 'd': "d", 'e': "e" }
+key = "e"
+value = "E"
+new_dict = update_dictionary(my_dict, key, value)
+print_sorted_dictionary(new_dict)
+print("--")
+print_sorted_dictionary(my_dict)
+
+# Test case 3
+print("--")
+print("--")
+
+my_dict = { 'a': "a", 'b': "b" , 'c': "c", 'd': "d", 'e': "e" }
+key = "a"
+value = 89
+new_dict = update_dictionary(my_dict, key, value)
+print_sorted_dictionary(new_dict)
+print("--")
+print_sorted_dictionary(my_dict)
+
+# Test case 4
+print("--")
+print("--")
+
+my_dict = { 'a': "a", 'b': "b" , 'c': "c", 'd': "d", 'e': "e" }
+key = "f"
+value = "A"
+new_dict = update_dictionary(my_dict, key, value)
+print_sorted_dictionary(new_dict)
+print("--")
+print_sorted_dictionary(my_dict)
+
+# Test case 5
+print("--")
+print("--")
+
+my_dict = { }
+key = "a"
+value = "a"
+new_dict = update_dictionary(my_dict, key, value)
+print_sorted_dictionary(new_dict)
+print("--")
+print_sorted_dictionary(my_dict)
