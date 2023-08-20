@@ -58,16 +58,3 @@ try:
     print(my_square_2._Square__size)
 except Exception as e:
     print(e)
-```
-
-When you run this script, it should output the following:
-
-```
-<class '__main__.Square'>
-{'size': 3}
-'Square' object has no attribute 'size'
-'Square' object has no attribute '__size'
-<class '__main__.Square'>
-{'size': 89}
-'Square' object has no attribute 'size'
-89
