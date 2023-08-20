@@ -1,0 +1,8 @@
+import requests
+
+response = requests.get('https://alu-intranet.hbtn.io/status')
+response_dict = response.json()
+
+print("Body response:")
+print("\t- type: {}".format(type(response_dict['status'])))
+print("\t- content: {}".format(response_dict['status']))
