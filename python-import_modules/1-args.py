@@ -1,21 +1,14 @@
 #!/usr/bin/env python3
-
 import sys
 
-if __name__ == "__main__":
-    args = sys.argv[1:]  # Get the list of arguments (excluding the script name)
-
-    num_args = len(args)  # Get the number of arguments
-
-    # Print the number of arguments
-    print(f"{num_args} argument{'s' if num_args != 1 else ''}:", end="")
-
-    # Print a dot if no arguments were passed
+def main():
+    num_args = len(sys.argv) - 1
     if num_args == 0:
-        print(".")
+        print("0 arguments.")
     else:
-        print()  # Print a new line
+        print(f"{num_args} argument{'s' if num_args > 1 else ''}:")
+        for i, arg in enumerate(sys.argv[1:], start=1):
+            print(f"{i}: {arg}")
 
-        # Print each argument
-        for i, arg in enumerate(args, start=1):
-            print(f"{i}: {arg}")  # Print the position and value of each argument
+if __name__ == "__main__":
+    main()
