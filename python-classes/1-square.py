@@ -73,3 +73,47 @@ try:
     print(mysquare.__dict__)
 except Exception as e:
     print(e)  # size must be >= 0
+    class Square:
+    def __init__(self, size=0):
+        self.__size = size
+
+my_square = Square(89)
+print(type(my_square))  # <class '__main__.Square'>
+print(my_square.__dict__)  # {'_Square__size': 89}
+class Square:
+    def __init__(self, size=0):
+        self.__size = size
+
+my_square = Square()
+print(type(my_square))  # <class '__main__.Square'>
+print(my_square.__dict__)  # {'_Square__size': 0}
+class Square:
+    def __init__(self, size=0):
+        self.__size = size
+
+try:
+    my_square = Square("3")
+    print(type(my_square))
+    print(my_square.__dict__)
+except Exception as e:
+    print(e)
+    class Square:
+    def __init__(self, size=0):
+        self.__size = size
+
+try:
+    my_square = Square(3.14)
+    print(type(my_square))
+    print(my_square.__dict__)
+except Exception as e:
+    print(e)
+    class Square:
+    def __init__(self, size=0):
+        self.__size = size
+
+try:
+    my_square = Square(-89)
+    print(type(my_square))
+    print(my_square.__dict__)
+except Exception as e:
+    print(e)
