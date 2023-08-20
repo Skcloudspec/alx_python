@@ -34,15 +34,6 @@ class Square:
         """
         return f"Square(size={self.__size})"
 
-    def area(self):
-        """
-        Calculates the area of the Square.
-
-        Returns:
-            int: The area of the Square.
-        """
-        return self.__size ** 2
-
 
 # Correct output - case: mysquare = Square(3)
 mysquare = Square(3)
