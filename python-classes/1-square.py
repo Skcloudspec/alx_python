@@ -1,84 +1,59 @@
 #!/usr/bin/python3
 class Square:
-    """
-    Square class represents a square shape.
-
-    Attributes:
-        __size (int): The size of the square.
-    """
-
+    """A class that defines a square by its size."""
     def __init__(self, size=0):
-        """
-        Initializes a Square instance.
+        """Initializes a Square instance with an optional size.
 
         Args:
-            size (int): The size of the square (default is 0).
-
+            size (int): The size of the square (default 0).
         Raises:
-            TypeError: If size is not an integer.
-            ValueError: If size is less than 0.
+            TypeError: If the size argument is not an integer.
+            ValueError: If the size argument is negative.
         """
-        if not isinstance(size, int):
+        if type(size) != int:
             raise TypeError("size must be an integer")
         elif size < 0:
             raise ValueError("size must be >= 0")
         else:
             self.__size = size
-
-    def __str__(self):
-        """
-        Returns a string representation of the Square.
-
-        Returns:
-            str: A string representing the Square.
-        """
-        return f"Square(size={self.__size})"
-
+    
     def area(self):
-        """
-        Calculates the area of the Square.
+        """Calculates the area of the square.
 
         Returns:
-            int: The area of the Square.
+            int: The area of the square (size times size).
         """
         return self.__size ** 2
 
 
-# Correct output - case: mysquare = Square(3)
-mysquare = Square(3)
-print(type(mysquare))  # <class '__main__.Square'>
-print(mysquare.__dict__)  # {'_Square__size': 3}
-
-# Correct output - case: mysquare = Square(89)
-mysquare = Square(89)
-print(type(mysquare))  # <class '__main__.Square'>
-print(mysquare.__dict__)  # {'_Square__size': 89}
-
-# Correct output - case: mysquare = Square()
-mysquare = Square()
-print(type(mysquare))  # <class '__main__.Square'>
-print(mysquare.__dict__)  # {'_Square__size': 0}
-
-# Correct output - case: try: mysquare = Square("3")
+# Test the Square class
 try:
-    mysquare = Square("3")
-    print(type(mysquare))
-    print(mysquare.__dict__)
+    square1 = Square("3")
+    print(type(square1))
+    print(square1.__dict__)
 except Exception as e:
-    print(e)  # size must be an integer
+    print(e)
 
-# Correct output - case: try: mysquare = Square(3.14)
 try:
-    mysquare = Square(3.14)
-    print(type(mysquare))
-    print(mysquare.__dict__)
+    square2 = Square(3.14)
+    print(type(square2))
+    print(square2.__dict__)
 except Exception as e:
-    print(e)  # size must be an integer
+    print(e)
 
-# Correct output - case: try: mysquare = Square(-89)
 try:
-    mysquare = Square(-89)
-    print(type(mysquare))
-    print(mysquare.__dict__)
+    square3 = Square(-89)
+    print(type(square3))
+    print(square3.__dict__)
 except Exception as e:
-    print(e)  # size must be >= 0
+    print(e)
+
+square4 = Square(3)
+print(type(square4))
+print(square4.__dict__)
+
+square5 = Square()
+print(type(square5))
+print(square5.__dict__)
+
+print(square4.area())  # Output: 9
