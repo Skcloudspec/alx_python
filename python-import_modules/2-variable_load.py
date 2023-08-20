@@ -26,3 +26,6 @@ if __name__ == "__main__":
     b = 0
     print("\nWhen a is missing, b = {}".format(b))
     safe_print_division(None, b)
+    from variable_load_2 import a
+
+print(a)
