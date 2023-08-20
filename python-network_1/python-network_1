@@ -1,8 +1,252 @@
-import requests
+class Base:
+    """A class to manage id attributes for future classes."""
+    __nb_objects = 0
 
-response = requests.get('https://alu-intranet.hbtn.io/status')
-response_dict = response.json()
+    def __init__(self, id=None):
+        """Initializes a Base instance with an optional id.
 
-print("Body response:")
-print("\t- type: {}".format(type(response_dict['status'])))
-print("\t- content: {}".format(response_dict['status']))
+        Args:
+            id (int): The id of the Base instance (default None).
+        """
+        if id is not None:
+            self.id = id
+        else:
+            Base.__nb_objects += 1
+            self.id = Base.__nb_objects
+
+
+class Rectangle(Base):
+    """A class that defines a rectangle by its width and height."""
+    def __init__(self, width=0, height=0):
+        """Initializes a Rectangle instance with optional width and height.
+
+        Args:
+            width (int): The width of the rectangle (default 0).
+            height (int): The height of the rectangle (default 0).
+        """
+        super().__init__()
+        if type(width) != int:
+            raise TypeError("width must be an integer")
+        elif width < 0:
+            raise ValueError("width must be >= 0")
+        else:
+            self.__width = width
+        
+        if type(height) != int:
+            raise TypeError("height must be an integer")
+        elif height < 0:
+            raise ValueError("height must be >= 0")
+        else:
+            self.__height = height
+    
+    def area(self):
+        """Calculates the area of the rectangle.
+
+        Returns:
+            int: The area of the rectangle (width times height).
+        """
+        return self.__width * self.__height
+    
+    def display(self):
+        """Prints the rectangle to the console using '#' characters.
+
+        Example:
+        #####
+        #####
+        #####
+        """
+        for i in range(self.__height):
+            for j in range(self.__width):
+                print("#", end="")
+            print()
+    
+    def __str__(self):
+        """Returns a string representation of the rectangle.
+
+        Example:
+        [Rectangle] (1) 2/3
+        """
+        return "[Rectangle] ({}) {}/{}".format(self.id, self.__width, self.__height)
+    
+    def update(self, *args, **kwargs):
+        """Updates the attributes of the rectangle based on an unlimited number of arguments.
+
+        Args:
+            *args (int): Variable length argument list.
+                - 1st argument represents the id attribute that shouldn't be updated.
+                - 2nd argument represents the width attribute.
+                - 3rd argument represents the height attribute.
+            **kwargs (dict): Arbitrary keyword arguments.
+                - Can contain either or both of the attributes to update.
+                - Attribute updates take precedence over *args updates.
+        """
+        if len(args) > 0:
+            if len(args) >= 1:
+                self.id = args[0]
+            if len(args) >= 2:
+                self.__width = args[1]
+            if len(args) >= 3:
+                self.__height = args[2]
+        else:
+            if "id" in kwargs:
+                self.id = kwargs["id"]
+            if "width" in kwargs:
+                self.__width = kwargs["width"]
+            if "height" in kwargs:
+                self.__height = kwargs["height"]
+
+
+class Square(Rectangle):
+    """A class that defines a square by its size."""
+    def __init__(self, size=0):
+        """Initializes a Square instance with an optional size.
+
+        Args:
+            size (int): The size of the square (default 0).
+        Raises:
+            TypeError: If the size argument is not an integer.
+            ValueError: If the size argument is negative.
+        """
+        super().__init__(size, size)
+    
+    def __str__(self):
+        """Returns a string representation of the square.
+
+        Example:
+        [Square] (1) 2/2
+        """
+        return "[Square] ({}) {}/{}".format(self.id, self._Rectangle__width, self._Rectangle__height)
+    
+    def update(self, *args, **kwargs):
+        """Updates the attributes of the square based on an unlimited number of arguments.
+
+        Args:
+            *args (int): Variable length argument list.
+                - 1st argument represents the id attribute that shouldn't be updated.
+                - 2nd argument represents the size attribute.
+            **kwargs (dict): Arbitrary keyword arguments.
+                - Can contain either or both of the attributes to update.
+                - Attribute updates take precedence over *args updates.
+        """
+        if len(args) > 0:
+            if len(args) >= 1:
+                self.id = args[0]
+            if len(args) >= 2:
+                self.__size = args[1]
+                self._Rectangle__width = args[1]
+                self._Rectangle__height = args[1]
+        else:
+            if "id" in kwargs:
+                self.id = kwargs["id"]
+            if "size" in kwargs:
+                self.__size = kwargs["size"]
+                self._Rectangle__width = kwargs["size"]
+                self._Rectangle__height = kwargs["size"]
+    
+    @property
+    def size(self):
+        """int: The size attribute of the square."""
+        return self.__size
+    
+    @size.setter
+    def size(self, value):
+        """Sets the size attribute of the square.
+
+        Args:
+            value (int): The value to set the size attribute to.
+        Raises:
+            TypeError: If the size attribute is not an integer.
+            ValueError: If the size attribute is negative.
+        """
+        if type(value) != int:
+            raise TypeError("size must be an integer")
+        elif value < 0:
+            raise ValueError("size must be >= 0")
+        else:
+            self.__size = value
+            self._Rectangle__width = value
+            self._Rectangle__height = value
+
+
+# Create a Square object with size 3
+mysquare = Square(3)
+
+# Calculate its area
+print("Size of the square: {}".format(mysquare.size))
+print("Area of the square with size {}: {}".format(mysquare.size, mysquare.area()))
+
+# Print the square using display method
+print("Printing the square using '#' character:\n")
+mysquare.display()
+print()
+
+# Set the size of the square to 5 and print the updated square
+mysquare.size = 5
+print("New size of the square: {}".format(mysquare.size))
+print("New area of the square with size {}: {}".format(mysquare.size, mysquare.area()))
+print("Printing the updated square using '#' character:\n")
+mysquare.display()
+print()
+
+# Create another Square object with default size (0) - id will be automatically assigned
+mysquare_2 = Square()
+
+# Calculate its area and print the id, size and area
+print("Id of the square: {}".format(mysquare_2.id))
+print("Size of the square: {}".format(mysquare_2.size))
+print("Area of the square with default size {}: {}".format(mysquare_2.size, mysquare_2.area()))
+
+
+# Try to create a Square object with a non-integer size
+try:
+    mysquare_3 = Square("test")
+except TypeError as e:
+    print(e)
+
+# Try to create a Square object with a negative size
+try:
+    mysquare_4 = Square(-5)
+except ValueError as e:
+    print(e)
+
+
+# Create a Rectangle object and print its string representation
+myrectangle = Rectangle(4, 6)
+print(myrectangle)
+
+# Update the width of the rectangle using args and print updated string representation
+myrectangle.update(1, 2)
+print(myrectangle)
+
+# Update the height of the rectangle using kwargs and print updated string representation
+myrectangle.update(height=3)
+print(myrectangle)
+
+# Update all attributes of the rectangle using args and kwargs combined and print updated string representation
+myrectangle.update(2, 4, width=5)
+print(myrectangle)
+
+
+# Create a Square object and print its string representation
+mysquare = Square(2)
+print(mysquare)
+
+# Update the size of the square using args and print updated string representation
+mysquare.update(3)
+print(mysquare)
+
+# Update all attributes of the square using kwargs and print updated string representation
+mysquare.update(id=4, size=5)
+print(mysquare)
+
+# Try to set the size of the square to a non-integer value
+try:
+    mysquare.size = "test"
+except TypeError as e:
+    print(e)
+
+# Try to set the size of the square to a negative value
+try:
+    mysquare.size = -5
+except ValueError as e:
+    print(e)
