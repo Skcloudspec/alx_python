@@ -16,7 +16,7 @@ class Square:
             raise ValueError("size must be >= 0")
         else:
             self.__size = size
-
+    
     def area(self):
         """Calculates the area of the square.
 
@@ -24,7 +24,7 @@ class Square:
             int: The area of the square (size squared).
         """
         return self.__size ** 2
-
+    
     def my_print(self):
         """Prints the square to the console using '#' characters.
 
@@ -42,7 +42,7 @@ class Square:
                 for j in range(self.__size):
                     print("#", end="")
                 print()
-
+ 
 
 # Create a Square object with size 3
 mysquare = Square(3)
@@ -54,6 +54,7 @@ print("Area of the square with size {}: {}".format(mysquare._Square__size, mysqu
 # Print the square using my_print method
 print("Printing the square using '#' character:\n")
 mysquare.my_print()
+print()
 
 # Create a Square object with size 89
 mysquare_2 = Square(89)
@@ -65,6 +66,7 @@ print("Area of the square with size {}: {}".format(mysquare_2._Square__size, mys
 # Print the square using my_print method
 print("Printing the square using '#' character:\n")
 mysquare_2.my_print()
+print()
 
 # Create a Square object with default size (0)
 mysquare_3 = Square()
@@ -76,6 +78,7 @@ print("Area of the square with default size {}: {}".format(mysquare_3._Square__s
 # Print the square using my_print method
 print("Printing the square using '#' character:\n")
 mysquare_3.my_print()
+print()
 
 # Try to create a Square object with a non-integer size
 try:
