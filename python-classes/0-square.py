@@ -24,37 +24,37 @@ class Square:
 
 
 # Create a Square object with size 3
-my_square = Square(3)
+mysquare = Square(3)
 
 # Print the type of the object and its dictionary representation
-print(type(my_square))
-print(my_square.dict_)
+print(type(mysquare))
+print(mysquare.dict_)
 
 # Try to access the private __size attribute using the size and __size names
 try:
-    print(my_square.size)
-except Exception as e:
+    print(mysquare.size)
+except AttributeError as e:
     print(e)
 
 try:
-    print(my_square.__size)
-except Exception as e:
+    print(mysquare._Square__size)
+except AttributeError as e:
     print(e)
 
 # Create a Square object with size 89
-my_square_2 = Square(89)
+mysquare_2 = Square(89)
 
 # Print the type of the object and its dictionary representation
-print(type(my_square_2))
-print(my_square_2.dict_)
+print(type(mysquare_2))
+print(mysquare_2.dict_)
 
 # Try to access the private __size attribute using the size and __size names
 try:
-    print(my_square_2.size)
-except Exception as e:
+    print(mysquare_2.size)
+except AttributeError as e:
     print(e)
 
 try:
-    print(my_square_2._Square__size)
-except Exception as e:
+    print(mysquare_2._Square__size)
+except AttributeError as e:
     print(e)
