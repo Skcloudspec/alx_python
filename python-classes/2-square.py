@@ -1,42 +1,40 @@
-#!/usr/bin/puyhon3
-```
-"""
-This module defines a Square class that represents a square shape
+#!/usr/bin/python3
+"""This is a module-level documentation.
+
+This module contains a class called Square, which defines a square by its size.
+
 """
 
 class Square:
+    """Represents a square.
+
+    This class defines a square by its size.
+
+    Attributes:
+        __size (int): The size of the square.
+
     """
-    This class represents a square shape
-    """
+
     def __init__(self, size=0):
-        """
-        Initializes a Square instance
+        """Initialize a new Square instance.
+
         Args:
-            - size: the size of the square (default: 0)
+            size (int): The size of the square.
+
         """
-        if type(size) is not int:
+        if not isinstance(size, int):
             raise TypeError("size must be an integer")
-        elif size < 0:
+
+        if size < 0:
             raise ValueError("size must be >= 0")
-        else:
-            self.__size = size
+
+        self.__size = size
 
     def area(self):
-        """
-        Computes the area of the square
+        """Calculate the area of the square.
+
         Returns:
-            - the area of the square
+            int: The area of the square.
+
         """
-        return self.__size * self.__size
-
-# create objects and test methods
-if __name__ == "__main__":
-    mysquare = Square(3)
-    print("Area:", mysquare.area())  # output: Area: 9
-
-    mysquare = Square(89)
-    print("Area:", mysquare.area())  # output: Area: 7921
-
-    mysquare = Square()
-    print("Area:", mysquare.area())  # output: Area: 0
-```
+        return self.__size ** 2
