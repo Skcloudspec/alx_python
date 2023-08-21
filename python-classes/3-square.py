@@ -69,4 +69,11 @@ try:
     print(mysquare.size)
 except Exception as e:
     print(e)  # output: size must be an integer
+Square = __import__('3-square').Square
 
+my_square = Square(89)
+print(my_square.size)
+print(my_square.area())
+my_square.size = 33
+print(my_square.size)
+print(my_square.area())
