@@ -1,5 +1,5 @@
-import MySQLdb
 import sys
+import MySQLdb
 
 
 def filter_states(username, password, database, state_name):
