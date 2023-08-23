@@ -1,35 +1,35 @@
 ```python
 #!/usr/bin/python3
-"""Script that lists all states with a name starting with N(upper N)"""
+"""Script that displays all values in the states table of hbtn_0e_0_usa
+where name matches the argument"""
 
-import MySQLdb
 import sys
+import MySQLdb
 
-if __name__ == '__main__':
-    if len(sys.argv) != 4:
-        print("Usage: {} USERNAME PASSWORD DATABASE".format(sys.argv[0]))
-        sys.exit(1)
+if __name__ == "__main__":
+    # retrieve command-line arguments
+    mysql_username = sys.argv[1]
+    mysql_password = sys.argv[2]
+    database_name = sys.argv[3]
+    state_name = sys.argv[4]
 
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
+    # connect to MySQL server
+    db = MySQLdb.connect(host="localhost",
+                         port=3306,
+                         user=mysql_username,
+                         passwd=mysql_password,
+                         db=database_name)
 
-    db = MySQLdb.connect(
-        host="localhost",
-        user=username,
-        passwd=password,
-        db=database,
-        port=3306)
-
+    # execute SQL query to retrieve states with matching name
     cursor = db.cursor()
+    cursor.execute("SELECT * FROM states WHERE name='{}' ORDER BY id"
+                   .format(state_name))
 
-    cursor.execute("SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY id ASC;")
+    # fetch all matching rows and display results
     rows = cursor.fetchall()
-
     for row in rows:
         print(row)
 
+    # close cursor and database connections
     cursor.close()
-    db.close()
-```
-
+    db.close() 
