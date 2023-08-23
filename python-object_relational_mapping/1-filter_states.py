@@ -4,13 +4,19 @@ import sys
 
 def filter_states(username, password, database):
     # Connect to the MySQL server
-    db = MySQLdb.connect(host="localhost", port=3306, user=username, passwd=password, db=database)
+    db = MySQLdb.connect(
+        host="localhost",
+        port=3306,
+        user=username,
+        passwd=password,
+        db=database
+    )
 
     # Create a cursor object to execute SQL queries
     cursor = db.cursor()
 
-    # Execute the SQL query to fetch states starting with 'n'
-    query = "SELECT * FROM states WHERE name LIKE 'n%' ORDER BY id ASC"
+    # Execute the SQL query to fetch states starting with 'N'
+    query = "SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY id ASC"
     cursor.execute(query)
 
     # Fetch and print the results
