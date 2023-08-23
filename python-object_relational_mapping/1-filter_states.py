@@ -8,32 +8,28 @@ from the database hbtn_0e_0_usa
 import MySQLdb
 import sys
 
-
 if __name__ == "__main__":
-    # Connect to the database using the arguments
-    username, password, db_name = sys.argv[1:]
-    db = MySQLdb.connect(
-        host="localhost",
-        port=3306,
-        user=username,
-        passwd=password,
-        db=db_name,
-        charset="utf8")
+    if len(sys.argv) == 4:
+        connection = MySQLdb.connect(
+            host="localhost",
+            user=sys.argv[1],
+            passwd=sys.argv[2],
+            db=sys.argv[3],
+            port=3306)
 
-    # Create a cursor object to execute queries
-    cursor = db.cursor()
+        cursor = connection.cursor()
+        query = """SELECT * 
+                FROM states 
+                WHERE name LIKE BINARY 'n%'
+                ORDER BY id ASC"""
 
-    # Execute the query
-    cursor.execute("""SELECT * FROM states
-                   WHERE name LIKE BINARY 'n%'
-                   ORDER BY id ASC""")
+        cursor.execute(query)
+        results = cursor.fetchall()
 
-    # Display the results
-    results = cursor.fetchall()
+        for row in results:
+            print(row)
 
-    for row in results:
-        print(row)
+        cursor.close()
+        connection.close()
+```
 
-    # Close cursor and database connection
-    cursor.close()
-    db.close()
