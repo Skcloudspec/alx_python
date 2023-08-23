@@ -12,8 +12,9 @@ if not url.endswith("/"):
 if not email.startswith("email="):
     email = "email=" + email
 
-payload = {email}
-response = requests.post(url, data=payload)
+url += "?" + email
+
+response = requests.post(url)
 
 print("Your email is:", email.split("=")[1])
 print(response.text)
