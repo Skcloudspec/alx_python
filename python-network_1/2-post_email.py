@@ -1,38 +1,27 @@
+from urllib.parse import urlencode
 import requests
 import sys
-import subprocess
-import time
 
-# Start the Flask web server in the background
-web_server_process = subprocess.Popen(["python3", "web_server.py"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-time.sleep(5)  # Wait for the server to start
-
-url = sys.argv[1]
-email = sys.argv[2]
-
-# Ensure proper formatting of the URL and email
-if not url.startswith("http://") and not url.startswith("https://"):
-    url = "http://" + url
-if not url.endswith("/"):
-    url += "/"
-if not email.startswith("email="):
-    email = "email=" + email
-
-url += "?" + email
-
-response = requests.post(url)
-
-print("Your email is:", email.split("=")[1])
-print(response.text)
-
-# Stop the web server
-web_server_process.terminate()
-```python
-from urllib.parse import urlencode
-
+# Construct the URL with parameters using urllib.parse.urlencode
 base_url = "http://0.0.0.0:5050"
 params = {"email": "test@test.com"}
 
 url = f"{base_url}?{urlencode(params)}"
 print(url)
-```
+
+# Send the POST request
+response = requests.post(url)
+
+# Retrieve the URL and email address from the command-line arguments
+url = sys.argv[1]
+email = sys.argv[2]
+
+# Construct the payload
+payload = {'email': email}
+
+# Send the POST request
+response = requests.post(url, data=payload)
+
+# Print the email address and the body of the response
+print("Your email is:", email)
+print(response.text)
