@@ -71,11 +71,30 @@ class Square:
 my_square = Square(3)
 my_square.my_print()
 
-# Output:
+# Correct output:
 # ###
 # ###
 # ###
 
 # Create a Square object with size 10
 my_square = Square(10)
-my_square.my_print
+my_square.my_print()
+
+# Correct output:
+# ##########
+# ##########
+# ##########
+# ##########
+# ##########
+# ##########
+# ##########
+# ##########
+# ##########
+# ##########
+
+# Create a Square object with size 0
+my_square = Square(0)
+my_square.my_print()
+
+# Correct output:
+#
