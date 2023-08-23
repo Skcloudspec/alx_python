@@ -1,10 +1,10 @@
+import subprocess
 import requests
 import sys
-import subprocess
 import time
 
 # Start the Flask web server in the background
-web_server_process = subprocess.Popen(["python3", "web_server.py"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+web_server_process = subprocess.Popen(["python3", "-m", "flask", "run", "--host=0.0.0.0", "--port=5050"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 time.sleep(5)  # Wait for the server to start
 
 url = sys.argv[1]
@@ -18,9 +18,8 @@ if not url.endswith("/"):
 if not email.startswith("email="):
     email = "email=" + email
 
-url += "?" + email
-
-response = requests.post(url)
+payload = {'email': email}
+response = requests.post(url, data=payload)
 
 print("Your email is:", email.split("=")[1])
 print(response.text)
