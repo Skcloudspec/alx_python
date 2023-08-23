@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-```
 class Square:
     def __init__(self, size=0):
         self.size = size
@@ -25,34 +24,3 @@ class Square:
         else:
             for _ in range(self.__size):
                 print("#" * self.__size)
-        print()  # add extra line for spacing
-
-my_square = Square(3)
-my_square.my_print()  # Output: 
-"""
-###
-###
-###
-"""
-
-my_square.size = 10
-my_square.my_print()  # Output: 
-"""
-##########
-##########
-##########
-##########
-##########
-##########
-##########
-##########
-##########
-##########
-"""
-
-my_square.size = 0
-my_square.my_print()  # Output: 
-"""
-
-"""
-
