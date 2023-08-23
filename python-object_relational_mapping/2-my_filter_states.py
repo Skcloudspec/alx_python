@@ -1,44 +1,36 @@
-import MySQLdb
+```python
+#!/usr/bin/python3
+"""Script that displays all values in the states table of hbtn_0e_0_usa
+where name matches the argument"""
+
 import sys
+import MySQLdb
 
+if __name__ == "__main__":
+    # retrieve command-line arguments
+    mysql_username = sys.argv[1]
+    mysql_password = sys.argv[2]
+    database_name = sys.argv[3]
+    state_name = sys.argv[4]
 
-def filter_states(username, password, database, state_name):
-    # Connect to MySQL server
-    db = MySQLdb.connect(
-        host='localhost',
-        port=3306,
-        user=username,
-        passwd=password,
-        db=database
-    )
+    # connect to MySQL server
+    db = MySQLdb.connect(host="localhost",
+                         port=3306,
+                         user=mysql_username,
+                         passwd=mysql_password,
+                         db=database_name)
 
-    # Create a cursor object to execute SQL queries
+    # execute SQL query to retrieve states with matching name
     cursor = db.cursor()
+    cursor.execute("SELECT * FROM states WHERE name='{}' ORDER BY id"
+                   .format(state_name))
 
-    # Prepare the SQL query with user input
-    query = "SELECT * FROM states WHERE name = %s ORDER BY id ASC"
-
-    # Execute the query
-    cursor.execute(query, (state_name,))
-
-    # Fetch all rows from the result set
+    # fetch all matching rows and display results
     rows = cursor.fetchall()
-
-    # Display the results
     for row in rows:
         print(row)
 
-    # Close the cursor and database connection
+    # close cursor and database connections
     cursor.close()
     db.close()
 
-
-if __name__ == '__main__':
-    # Get command-line arguments
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-    state_name = sys.argv[4]
-
-    # Call the function to filter and list states
-    filter_states(username, password, database, state_name)
