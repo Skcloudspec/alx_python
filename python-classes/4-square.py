@@ -64,21 +64,3 @@ class Square:
         else:
             for _ in range(self.__size):
                 print("#" * self.__size)
-
-
-# Test cases
-if __name__ == "__main__":
-    mysquare = Square(3)
-    mysquare.my_print()
-
-    print("--")
-
-    mysquare = Square(10)
-    mysquare.my_print()
-
-    print("--")
-
-    mysquare = Square(0)
-    mysquare.my_print()
-
-    print("--")
