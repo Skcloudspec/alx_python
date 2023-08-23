@@ -16,10 +16,10 @@ def filter_states(username, password, database, state_name):
     cursor = db.cursor()
 
     # Prepare the SQL query with user input
-    query = "SELECT * FROM states WHERE name = %s ORDER BY id ASC"
+    query = "SELECT * FROM states WHERE name = '{}' ORDER BY id ASC".format(state_name)
 
     # Execute the query
-    cursor.execute(query, (state_name,))
+    cursor.execute(query)
 
     # Fetch all rows from the result set
     rows = cursor.fetchall()
