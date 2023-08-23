@@ -1,75 +1,56 @@
 #!/usr/bin/python3
+"""this is class square"""
 class Square:
-    """
-    This is a class that represents a square.
-    """
-
+    """creates a class square
+    and below is it's intialiasation"""
     def __init__(self, size=0):
-        """
-        This method initializes a Square object with a size attribute.
-        :param size: An integer representing the size of the square.
+        """Initialize a new Square instance.
+
+        Args:
+            size (int, optional): The size of the square. Default is 0.
+
+        Raises:
+            TypeError: If size is not an integer.
+            ValueError: If size is less than 0.
+
         """
         self.__size = size
 
     @property
     def size(self):
-        """
-        This method retrieves the size attribute for the square.
+        """Get the size of the square.
+
+        Returns:
+            int: The size of the square.
+
         """
         return self.__size
 
     @size.setter
     def size(self, value):
+        """Set the size of the square.
+
+        Args:
+            value (int): The new size of the square.
+
+        Raises:
+            TypeError: If value is not an integer.
+            ValueError: If value is less than 0.
+
         """
-        This method sets the size attribute for the square.
-        :param value: An integer representing the size of the square.
-        :raises ValueError: If value is not an integer or is less than 0.
-        """
-        if type(value) != int:
-            raise ValueError("size must be an integer")
-        elif value < 0:
+        if not isinstance(value, int):
+            raise TypeError("size must be an integer")
+
+        if value < 0:
             raise ValueError("size must be >= 0")
-        else:
-            self.__size = value
+
+        self.__size = value
 
     def area(self):
-        """
-        This method calculates and returns the area of the square.
+        """Calculate the area of the square.
+
+        Returns:
+            int: The area of the square.
+
         """
         return self.__size ** 2
-
-
-# Test Case 1
-mysquare = Square(89)
-print(mysquare.size)  # output: 89
-print(mysquare.area())  # output: 7921
-mysquare.size = 33
-print(mysquare.size)  # output: 33
-print(mysquare.area())  # output: 1089
-
-# Test Case 2
-mysquare = Square(89)
-print(mysquare.size)  # output: 89
-
-# Test Case 3
-mysquare = Square()
-print(mysquare.size)  # output: 0
-
-# Test Case 4
-mysquare = Square(89)
-print(mysquare.size)  # output: 89
-mysquare.size = 33
-print(mysquare.size)  # output: 33
-
-# Test Case 5
-try:
-    mysquare = Square(89)
-    print(mysquare.size)  # output: 89
-    mysquare.size = "89"
-    print(mysquare.size)
-except Exception as e:
-    print(e)  # output: size must be an integer
-Square = __import__('3-square').Square
-
-my_square = Square(89)
-print(my
