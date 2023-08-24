@@ -1,46 +1,24 @@
-import MySQLdb
+#!/usr/bin/python3
+
+"""Module that lists all states from the hbtn_0e_0_usa database."""
+
 import sys
-
-
-def filter_cities_by_state(username, password, database, state_name):
-    # Connect to the MySQL server
-    db = MySQLdb.connect(
-        host="localhost",
-        port=3306,
-        user=username,
-        passwd=password,
-        db=database
-    )
-
-    # Create a cursor object to execute SQL queries
-    cursor = db.cursor()
-
-    # Execute the SQL query to fetch cities of the given state
-    query = """
-        SELECT cities.name
-        FROM cities
-        JOIN states ON cities.state_id = states.id
-        WHERE states.name = %s
-        ORDER BY cities.id ASC
-    """
-    cursor.execute(query, (state_name,))
-
-    # Fetch and print the results
-    results = cursor.fetchall()
-    cities = [row[0] for row in results]
-    print(", ".join(cities))
-
-    # Close the cursor and database connection
-    cursor.close()
-    db.close()
-
+import MySQLdb
 
 if __name__ == "__main__":
-    # Retrieve MySQL connection credentials and state name from command-line arguments
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-    state_name = sys.argv[4]
+    # Get MySQL credentials and state name from command-line arguments
+    # and Connect to MySQL server
+    db = MySQLdb.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
+    c = db.cursor()
 
-    # Call the filter_cities_by_state function
-    filter_cities_by_state(username, password, database, state_name)
+    # Execute the SQL query to retrieve cities in the specified state
+    query = ("SELECT * FROM `cities` as `c` \
+                INNER JOIN `states` as `s` \
+                   ON `c`.`state_id` = `s`.`id` \
+                ORDER BY `c`.`id`")
+    c.execute(query)
+
+    # Fetch all rows and filter cities by the specified state
+    # and Print the cities separated by commas
+    print(", ".join([ct[2] for ct in c.fetchall() if ct[4] == sys.argv[4]]))
+
