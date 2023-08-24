@@ -13,9 +13,9 @@ if __name__ == "__main__":
     c = db.cursor()
 
     # Execute the SQL query to retrieve states with the specified name
-    c.execute("SELECT * "
-              "FROM `states` "
-              "WHERE BINARY `name` = '{}'".format(sys.argv[4]))
+    c.execute("SELECT * \
+                 FROM `states` \
+                WHERE BINARY `name` = '{}'".format(sys.argv[4]))
 
     # Fetch all rows and print the states
     [print(state) for state in c.fetchall()]
@@ -26,4 +26,4 @@ if __name__ == "__main__":
     if result.total_errors == 0:
         print("PEP8 validation passed.")
     else:
-        print("PEP8 validation failed. Total errors:", result.total_errors) 
+        print("PEP8 validation failed. Total errors:", result.total_errors)
