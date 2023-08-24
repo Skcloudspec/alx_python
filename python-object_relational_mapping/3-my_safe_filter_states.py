@@ -36,6 +36,8 @@ if __name__ == "__main__":
     database = sys.argv[3]
     state_name = sys.argv[4]
 
-    # Call the filter_states function
-    filter_states(username, password, database, state_name)
-
+    # Call the filter_states function safely
+    try:
+        filter_states(username, password, database, state_name)
+    except MySQLdb.Error as e:
+        print("An error occurred while safely executing the SQL query:", e)
