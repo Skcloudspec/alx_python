@@ -1,43 +1,43 @@
+#!/usr/bin/python3
+"""Module that lists all states from the hbtn_0e_0_usa database."""
 import sys
 import MySQLdb
 
+if __name__ == "__main__":
+    import MySQLdb
+    import sys
 
-def filter_states(username, password, database, state_name):
+    # Get the command-line arguments
+    mysql_username = sys.argv[1]
+    mysql_password = sys.argv[2]
+    database_name = sys.argv[3]
+    state_name = sys.argv[4]
+
     # Connect to the MySQL server
     db = MySQLdb.connect(
-        host="localhost",
+        host='localhost',
         port=3306,
-        user=username,
-        passwd=password,
-        db=database
+        user=mysql_username,
+        passwd=mysql_password,
+        db=database_name
     )
 
-    # Create a cursor object to execute SQL queries
+    # Create a cursor object to execute queries
     cursor = db.cursor()
 
-    # Execute the SQL query with a parameter to fetch states matching the state_name
-    query = "SELECT * FROM states WHERE name = %s ORDER BY id ASC"
-    cursor.execute(query, (state_name,))
+    # Prepare the SQL query with placeholders
+    sql_query = "SELECT * FROM states WHERE name = %s ORDER BY id ASC"
 
-    # Fetch and print the results
-    results = cursor.fetchall()
-    for row in results:
+    # Execute the query with the state name as a parameter
+    cursor.execute(sql_query, (state_name,))
+
+    # Fetch all the rows returned by the query
+    rows = cursor.fetchall()
+
+    # Display the results
+    for row in rows:
         print(row)
 
     # Close the cursor and database connection
     cursor.close()
     db.close()
-
-
-if __name__ == "__main__":
-    # Retrieve MySQL connection credentials and state name from command-line arguments
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-    state_name = sys.argv[4]
-
-    # Call the filter_states function safely
-    try:
-        filter_states(username, password, database, state_name)
-    except MySQLdb.Error as e:
-        print("An error occurred while safely executing the SQL query:", e)
