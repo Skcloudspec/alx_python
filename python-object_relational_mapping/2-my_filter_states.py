@@ -27,3 +27,11 @@ if __name__ == "__main__":
         print("PEP8 validation passed.")
     else:
         print("PEP8 validation failed. Total errors:", result.total_errors)
+        
+        # Perform PEP8 validation
+style = pycodestyle.StyleGuide()
+result = style.check_files(['2-my_filter_states.py'])
+if result.total_errors == 0:
+    print("PEP8 validation passed.")
+else:
+    print("PEP8 validation failed. Total errors:", result.total_errors)
