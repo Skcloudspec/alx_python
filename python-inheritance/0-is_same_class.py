@@ -1,3 +1,8 @@
 #!/usr/bin/python3
-def is_same_class(obj, a_class):
-    return isinstance(obj, a_class)
+"""lookup module"""
+
+
+def lookup(obj):
+    """lookup method
+    Returns: a list of available attributes and methods of an object"""
+    return dir(obj)
